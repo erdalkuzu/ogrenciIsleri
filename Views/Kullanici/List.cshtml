@@ -1,0 +1,35 @@
+﻿@model List<OgrenciIsleri.Models.Kullanıcılar>
+@{
+    ViewBag.Title = "List";
+}
+<div class="col-lg-12">
+    <h2>Kullanıcı Listesi</h2>
+    <div class="nav navbar navbar-right">
+        <ul style="list-style:none">
+            <li>@Html.ActionLink("Yeni Kullanıcı","Create","Kullanici",new {@class="btn btn-primary" })</li>
+        </ul>
+        <hr />
+    </div>
+    <div class="container">
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr class="active">
+                        <th>Kullanıcı adı</th>
+                        <th>Şifre</th>
+                        <th>Öğretmen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.KullanıcıAdi</td>
+                            <td>@item.Sifre</td>
+                            <td><img src="@item.Ogretmenler.Fotograf" width="40" />@item.Ogretmenler.Adsoyad</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+</div>
+

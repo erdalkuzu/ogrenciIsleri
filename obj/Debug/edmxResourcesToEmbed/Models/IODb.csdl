@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OIDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="OIDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bolumlers" EntityType="OIDbModel.Bolumler" />
+    <EntitySet Name="Cinsiyetlers" EntityType="OIDbModel.Cinsiyetler" />
+    <EntitySet Name="Derslers" EntityType="OIDbModel.Dersler" />
+    <EntitySet Name="Notlars" EntityType="OIDbModel.Notlar" />
+    <EntitySet Name="Ogrencilers" EntityType="OIDbModel.Ogrenciler" />
+    <EntitySet Name="Ogretmenlers" EntityType="OIDbModel.Ogretmenler" />
+    <EntitySet Name="Sehirlers" EntityType="OIDbModel.Sehirler" />
+    <EntitySet Name="Sınıflar" EntityType="OIDbModel.Sınıflar" />
+    <EntitySet Name="sysdiagrams" EntityType="OIDbModel.sysdiagram" />
+    <EntitySet Name="Uyruklars" EntityType="OIDbModel.Uyruklar" />
+    <AssociationSet Name="FK_Dersler_Bolumler" Association="OIDbModel.FK_Dersler_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumlers" />
+      <End Role="Dersler" EntitySet="Derslers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Bolumler" Association="OIDbModel.FK_Notlar_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumlers" />
+      <End Role="Notlar" EntitySet="Notlars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Bolumler" Association="OIDbModel.FK_Ogrenciler_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumlers" />
+      <End Role="Ogrenciler" EntitySet="Ogrencilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogretmenler_Bolumler" Association="OIDbModel.FK_Ogretmenler_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumlers" />
+      <End Role="Ogretmenler" EntitySet="Ogretmenlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Cinsiyetler" Association="OIDbModel.FK_Ogrenciler_Cinsiyetler">
+      <End Role="Cinsiyetler" EntitySet="Cinsiyetlers" />
+      <End Role="Ogrenciler" EntitySet="Ogrencilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogretmenler_Cinsiyetler" Association="OIDbModel.FK_Ogretmenler_Cinsiyetler">
+      <End Role="Cinsiyetler" EntitySet="Cinsiyetlers" />
+      <End Role="Ogretmenler" EntitySet="Ogretmenlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dersler_Ogretmenler" Association="OIDbModel.FK_Dersler_Ogretmenler">
+      <End Role="Ogretmenler" EntitySet="Ogretmenlers" />
+      <End Role="Dersler" EntitySet="Derslers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Dersler" Association="OIDbModel.FK_Notlar_Dersler">
+      <End Role="Dersler" EntitySet="Derslers" />
+      <End Role="Notlar" EntitySet="Notlars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Ogrenciler" Association="OIDbModel.FK_Notlar_Ogrenciler">
+      <End Role="Ogrenciler" EntitySet="Ogrencilers" />
+      <End Role="Notlar" EntitySet="Notlars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Ogretmenler" Association="OIDbModel.FK_Notlar_Ogretmenler">
+      <End Role="Ogretmenler" EntitySet="Ogretmenlers" />
+      <End Role="Notlar" EntitySet="Notlars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Sehirler" Association="OIDbModel.FK_Ogrenciler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirlers" />
+      <End Role="Ogrenciler" EntitySet="Ogrencilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Sınıflar" Association="OIDbModel.FK_Ogrenciler_Sınıflar">
+      <End Role="Sınıflar" EntitySet="Sınıflar" />
+      <End Role="Ogrenciler" EntitySet="Ogrencilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Uyruklar" Association="OIDbModel.FK_Ogrenciler_Uyruklar">
+      <End Role="Uyruklar" EntitySet="Uyruklars" />
+      <End Role="Ogrenciler" EntitySet="Ogrencilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogretmenler_Sehirler" Association="OIDbModel.FK_Ogretmenler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirlers" />
+      <End Role="Ogretmenler" EntitySet="Ogretmenlers" />
+    </AssociationSet>
+    <EntitySet Name="Kullanıcılar" EntityType="OIDbModel.Kullanıcılar" />
+    <AssociationSet Name="FK_Kullanıcılar_Ogretmenler" Association="OIDbModel.FK_Kullanıcılar_Ogretmenler">
+      <End Role="Ogretmenler" EntitySet="Ogretmenlers" />
+      <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Bolumler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BolumAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Derslers" Relationship="OIDbModel.FK_Dersler_Bolumler" FromRole="Bolumler" ToRole="Dersler" />
+    <NavigationProperty Name="Notlars" Relationship="OIDbModel.FK_Notlar_Bolumler" FromRole="Bolumler" ToRole="Notlar" />
+    <NavigationProperty Name="Ogrencilers" Relationship="OIDbModel.FK_Ogrenciler_Bolumler" FromRole="Bolumler" ToRole="Ogrenciler" />
+    <NavigationProperty Name="Ogretmenlers" Relationship="OIDbModel.FK_Ogretmenler_Bolumler" FromRole="Bolumler" ToRole="Ogretmenler" />
+  </EntityType>
+  <EntityType Name="Cinsiyetler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ogrencilers" Relationship="OIDbModel.FK_Ogrenciler_Cinsiyetler" FromRole="Cinsiyetler" ToRole="Ogrenciler" />
+    <NavigationProperty Name="Ogretmenlers" Relationship="OIDbModel.FK_Ogretmenler_Cinsiyetler" FromRole="Cinsiyetler" ToRole="Ogretmenler" />
+  </EntityType>
+  <EntityType Name="Dersler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DersAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OgretmenID" Type="Int32" />
+    <Property Name="BolumID" Type="Int32" />
+    <NavigationProperty Name="Bolumler" Relationship="OIDbModel.FK_Dersler_Bolumler" FromRole="Dersler" ToRole="Bolumler" />
+    <NavigationProperty Name="Ogretmenler" Relationship="OIDbModel.FK_Dersler_Ogretmenler" FromRole="Dersler" ToRole="Ogretmenler" />
+    <NavigationProperty Name="Notlars" Relationship="OIDbModel.FK_Notlar_Dersler" FromRole="Dersler" ToRole="Notlar" />
+  </EntityType>
+  <EntityType Name="Notlar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OgretmenID" Type="Int32" />
+    <Property Name="BolumID" Type="Int32" />
+    <Property Name="OgrencıID" Type="Int32" />
+    <Property Name="DersID" Type="Int32" />
+    <Property Name="Notu" Type="Int32" />
+    <NavigationProperty Name="Bolumler" Relationship="OIDbModel.FK_Notlar_Bolumler" FromRole="Notlar" ToRole="Bolumler" />
+    <NavigationProperty Name="Dersler" Relationship="OIDbModel.FK_Notlar_Dersler" FromRole="Notlar" ToRole="Dersler" />
+    <NavigationProperty Name="Ogrenciler" Relationship="OIDbModel.FK_Notlar_Ogrenciler" FromRole="Notlar" ToRole="Ogrenciler" />
+    <NavigationProperty Name="Ogretmenler" Relationship="OIDbModel.FK_Notlar_Ogretmenler" FromRole="Notlar" ToRole="Ogretmenler" />
+  </EntityType>
+  <EntityType Name="Ogrenciler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adsoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TCNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="Fotograf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CinsiyetID" Type="Int32" />
+    <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="BolumID" Type="Int32" />
+    <Property Name="DogumYeri" Type="Int32" />
+    <Property Name="Sınıf" Type="Int32" />
+    <Property Name="UyrukID" Type="Int32" />
+    <NavigationProperty Name="Bolumler" Relationship="OIDbModel.FK_Ogrenciler_Bolumler" FromRole="Ogrenciler" ToRole="Bolumler" />
+    <NavigationProperty Name="Cinsiyetler" Relationship="OIDbModel.FK_Ogrenciler_Cinsiyetler" FromRole="Ogrenciler" ToRole="Cinsiyetler" />
+    <NavigationProperty Name="Notlars" Relationship="OIDbModel.FK_Notlar_Ogrenciler" FromRole="Ogrenciler" ToRole="Notlar" />
+    <NavigationProperty Name="Sehirler" Relationship="OIDbModel.FK_Ogrenciler_Sehirler" FromRole="Ogrenciler" ToRole="Sehirler" />
+    <NavigationProperty Name="Sınıflar" Relationship="OIDbModel.FK_Ogrenciler_Sınıflar" FromRole="Ogrenciler" ToRole="Sınıflar" />
+    <NavigationProperty Name="Uyruklar" Relationship="OIDbModel.FK_Ogrenciler_Uyruklar" FromRole="Ogrenciler" ToRole="Uyruklar" />
+  </EntityType>
+  <EntityType Name="Ogretmenler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BolumID" Type="Int32" />
+    <Property Name="Adsoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotograf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="DogumYeri" Type="Int32" />
+    <Property Name="CinsiyetID" Type="Int32" />
+    <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bolumler" Relationship="OIDbModel.FK_Ogretmenler_Bolumler" FromRole="Ogretmenler" ToRole="Bolumler" />
+    <NavigationProperty Name="Cinsiyetler" Relationship="OIDbModel.FK_Ogretmenler_Cinsiyetler" FromRole="Ogretmenler" ToRole="Cinsiyetler" />
+    <NavigationProperty Name="Derslers" Relationship="OIDbModel.FK_Dersler_Ogretmenler" FromRole="Ogretmenler" ToRole="Dersler" />
+    <NavigationProperty Name="Notlars" Relationship="OIDbModel.FK_Notlar_Ogretmenler" FromRole="Ogretmenler" ToRole="Notlar" />
+    <NavigationProperty Name="Sehirler" Relationship="OIDbModel.FK_Ogretmenler_Sehirler" FromRole="Ogretmenler" ToRole="Sehirler" />
+    <NavigationProperty Name="Kullanıcılar" Relationship="OIDbModel.FK_Kullanıcılar_Ogretmenler" FromRole="Ogretmenler" ToRole="Kullanıcılar" />
+  </EntityType>
+  <EntityType Name="Sehirler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SehirAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ogrencilers" Relationship="OIDbModel.FK_Ogrenciler_Sehirler" FromRole="Sehirler" ToRole="Ogrenciler" />
+    <NavigationProperty Name="Ogretmenlers" Relationship="OIDbModel.FK_Ogretmenler_Sehirler" FromRole="Sehirler" ToRole="Ogretmenler" />
+  </EntityType>
+  <EntityType Name="Sınıflar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SınıfNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ogrencilers" Relationship="OIDbModel.FK_Ogrenciler_Sınıflar" FromRole="Sınıflar" ToRole="Ogrenciler" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Uyruklar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ogrencilers" Relationship="OIDbModel.FK_Ogrenciler_Uyruklar" FromRole="Uyruklar" ToRole="Ogrenciler" />
+  </EntityType>
+  <Association Name="FK_Dersler_Bolumler">
+    <End Type="OIDbModel.Bolumler" Role="Bolumler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Dersler" Role="Dersler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Dersler">
+        <PropertyRef Name="BolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Bolumler">
+    <End Type="OIDbModel.Bolumler" Role="Bolumler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Notlar" Role="Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="BolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Bolumler">
+    <End Type="OIDbModel.Bolumler" Role="Bolumler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Ogrenciler" Role="Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="BolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogretmenler_Bolumler">
+    <End Type="OIDbModel.Bolumler" Role="Bolumler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Ogretmenler" Role="Ogretmenler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogretmenler">
+        <PropertyRef Name="BolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Cinsiyetler">
+    <End Type="OIDbModel.Cinsiyetler" Role="Cinsiyetler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Ogrenciler" Role="Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinsiyetler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="CinsiyetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogretmenler_Cinsiyetler">
+    <End Type="OIDbModel.Cinsiyetler" Role="Cinsiyetler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Ogretmenler" Role="Ogretmenler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinsiyetler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogretmenler">
+        <PropertyRef Name="CinsiyetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dersler_Ogretmenler">
+    <End Type="OIDbModel.Ogretmenler" Role="Ogretmenler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Dersler" Role="Dersler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogretmenler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Dersler">
+        <PropertyRef Name="OgretmenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Dersler">
+    <End Type="OIDbModel.Dersler" Role="Dersler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Notlar" Role="Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dersler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="DersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Ogrenciler">
+    <End Type="OIDbModel.Ogrenciler" Role="Ogrenciler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Notlar" Role="Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenciler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="OgrencıID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Ogretmenler">
+    <End Type="OIDbModel.Ogretmenler" Role="Ogretmenler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Notlar" Role="Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogretmenler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="OgretmenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Sehirler">
+    <End Type="OIDbModel.Sehirler" Role="Sehirler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Ogrenciler" Role="Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="DogumYeri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Sınıflar">
+    <End Type="OIDbModel.Sınıflar" Role="Sınıflar" Multiplicity="0..1" />
+    <End Type="OIDbModel.Ogrenciler" Role="Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sınıflar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="Sınıf" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Uyruklar">
+    <End Type="OIDbModel.Uyruklar" Role="Uyruklar" Multiplicity="0..1" />
+    <End Type="OIDbModel.Ogrenciler" Role="Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uyruklar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="UyrukID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogretmenler_Sehirler">
+    <End Type="OIDbModel.Sehirler" Role="Sehirler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Ogretmenler" Role="Ogretmenler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogretmenler">
+        <PropertyRef Name="DogumYeri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Kullanıcılar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullanıcıAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OgretmenID" Type="Int32" />
+    <NavigationProperty Name="Ogretmenler" Relationship="OIDbModel.FK_Kullanıcılar_Ogretmenler" FromRole="Kullanıcılar" ToRole="Ogretmenler" />
+  </EntityType>
+  <Association Name="FK_Kullanıcılar_Ogretmenler">
+    <End Type="OIDbModel.Ogretmenler" Role="Ogretmenler" Multiplicity="0..1" />
+    <End Type="OIDbModel.Kullanıcılar" Role="Kullanıcılar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogretmenler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Kullanıcılar">
+        <PropertyRef Name="OgretmenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<OgrenciIsleri.Models.Dersler>
+@{
+    ViewBag.Title = "List";
+}
+<div class="col-lg-12">
+    <h2>Ders Listesi</h2>
+    <hr />
+    <div class="nav navbar navbar-right">
+        <ul style="list-style:none">
+            <li>@Html.ActionLink("Yeni Ders", "Create", "Ders", new { @class = "btn btn-primary" })</li>
+        </ul>
+    </div>
+    <div class="container">
+        <table class="table table-bordered table-hover" id="tblDers">
+            <thead>
+                <tr class="active">
+                    <th>Ders Adı</th>
+                    <th>Öğretmen</th>
+                    <th>Bölüm</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.DersAdı</td>
+                        <td><img src="@item.Ogretmenler.Fotograf" width="40" />@item.Ogretmenler.Adsoyad</td>
+                        <td>@item.Bolumler.BolumAd</td>
+                        <td>@Html.ActionLink("Güncelle", "Edit", "Ders", new { id = item.ID }, new { @class = "btn" })</td>
+                        <td><a class="btn btnDers" data-id="@item.ID" data-name="@item.DersAdı">Sil</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tblDers").on("click", ".btnDers", function () {
+            var btn = $(this);
+            var id = btn.data("id");
+            var name = btn.data("name");
+            $.ajax({
+                url: "/Ders/Delete/" + id,
+                method: "POST",
+                success: function () {
+                    btn.parent().parent().remove();
+                    alert(name+"\n Silme başarılı.")
+                },
+                error: function () {
+                    alert("Silme işlemi başarısız.")
+                }
+            })
+        })
+    });
+</script>
+

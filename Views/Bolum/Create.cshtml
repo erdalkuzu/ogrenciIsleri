@@ -1,0 +1,22 @@
+﻿@model OgrenciIsleri.Models.Bolumler
+@{
+    ViewBag.Title = "Create";
+}
+<div class="col-lg-12">
+    <div class="container">
+        <h2>Yeni bölüm yaratmak için aşağıda alanı doldurunuz.</h2>
+        <hr />
+        @using (Html.BeginForm("Create", "Bolum", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.BolumAd, new { @class = "form-control", placeholder = "Bölüm adı giriniz." })
+                @Html.ValidationMessageFor(x => x.BolumAd)
+            </div>
+            <button type="submit" class="btn btn-success">Kaydet</button>
+            @Html.HiddenFor(x => x.ID)
+        }
+    </div>
+</div>
+

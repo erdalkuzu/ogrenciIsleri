@@ -1,0 +1,48 @@
+﻿@model OgrenciIsleri.Models.Ogrenciler
+@{
+    ViewBag.Title = "Search";
+}
+<div class="col-lg-12">
+    <div class="container">
+        
+        <center>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <img src="@Model.Fotograf" class="img-circle" />
+                </li>
+                <li class="list-group-item">
+                    <b>Ad Soyad :</b> @Model.Adsoyad
+                </li>
+                <li class="list-group-item">
+                    <b>TC Kimlik NO :</b>  @Model.TCNo
+                </li>
+                <li class="list-group-item">
+                    <b>Bölümü :</b>  @Model.Bolumler.BolumAd
+                </li>
+                <li class="list-group-item">
+                    <b>Cinsiyet :</b> @Model.Cinsiyetler.Cinsiyet
+                </li>
+                <li class="list-group-item">
+                    <b>Doğum Tarihi :</b> @string.Format("{0:dd MMMMMMMM yyyy}", Model.DogumTarihi)
+                </li>
+                <li class="list-group-item">
+                    <b>Adresi :</b> @Model.Adres
+                </li>
+                <li class="list-group-item">
+                    <b>Doğum Yeri :</b> @Model.Sehirler.SehirAd
+                </li>
+
+                <li class="list-group-item">
+                    <b>Telefon Numarası :</b> @Model.TelNo
+                </li>
+                <li class="list-group-item">
+                   <b>E-Mail Adresi : </b> @Model.Mail
+                </li>
+
+            </ul>
+        </center>
+       
+    </div>
+</div>
+
+

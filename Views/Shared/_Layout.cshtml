@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/validation.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Ogrenci/List">Öğrenci İşleri Otomasyonu</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/Ogrenci/List">Öğrenciler</a></li>
+                <li><a href="/Ogretmenler/List">Öğretmenler</a></li>
+                <li><a href="/Bolum/List">Bölümler</a></li>
+                <li><a href="/Ders/List">Dersler</a></li>
+                <li><a href="/Not/Index">Not Ver</a></li>
+            </ul>
+
+            @Html.Partial("_Search")
+            <ul class="nav navbar-nav navbar-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a href="/Kullanici/SignOut"><span class="glyphicon glyphicon-log-out"></span> Çıkış yap</a></li>
+                }
+                else
+                {
+                    <li><a href="/Kullanici/Login"><span class="glyphicon glyphicon-log-in"></span> Giriş yap</a></li>
+                }
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

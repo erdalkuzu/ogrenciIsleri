@@ -1,0 +1,55 @@
+﻿@model OgrenciIsleri.ViewModel.OgretmenVM
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="col-lg-12">
+    <div class="container">
+        <br />
+        <center>
+            <img width="150" class="img-circle" src="@Model.Ogretmenlers.Fotograf" />
+
+            <h2>@Model.Ogretmenlers.Adsoyad</h2>
+            @using (Html.BeginForm("Edit", "Ogretmenler", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary()
+
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Ogretmenlers.Adsoyad, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Ogretmenlers.Adsoyad)
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Ogretmenlers.Mail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Ogretmenlers.Mail)
+                </div>
+                <div class="form-group">
+                    @Html.DropDownListFor(x => x.Ogretmenlers.CinsiyetID, new SelectList(Model.Cinsiyetlers, "ID", "Cinsiyet"), new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Ogretmenlers.Tel, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Ogretmenlers.Tel)
+                </div>
+                <div class="form-group">
+                    @Html.DropDownListFor(x => x.Ogretmenlers.BolumID, new SelectList(Model.Bolumlers, "ID", "BolumAd"), new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.DropDownListFor(x => x.Ogretmenlers.DogumYeri, new SelectList(Model.Sehirlers, "ID", "SehirAd"), new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Ogretmenlers.DogumTarihi, new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(x => x.Ogretmenlers.DogumTarihi)
+                </div>
+                <div class="form-group">
+                    @Html.TextAreaFor(x => x.Ogretmenlers.Adres, 5, 5, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Ogretmenlers.Adres)
+                </div>
+                <div class="form-group">
+                    @Html.TextBox("Foto", null, new { @class = "form-control", type = "file", accept = ".jpg,.jpeg,.png,.JPEG," })
+                </div>
+                <button type="submit" class="btn btn-success">Kaydet</button>
+            }
+        </center>
+        
+       
+    </div>
+</div>
+

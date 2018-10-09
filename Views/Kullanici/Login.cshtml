@@ -1,0 +1,37 @@
+﻿@model OgrenciIsleri.Models.Kullanıcılar
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="card card-container">
+             <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> 
+            <p id="profile-name" class="profile-name-card"></p>
+                @using (Html.BeginForm("Login", "Kullanici", FormMethod.Post,new {@class="form-signin" }))
+                {
+                    @Html.HiddenFor(x=>x.OgretmenID)
+                    <span id="reauth-email" class="reauth-email"></span>
+                    @Html.TextBoxFor(x=>x.KullanıcıAdi, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+                    @Html.TextBoxFor(x=>x.Sifre, new { @class = "form-control", type = "password", placeholder = "Şifre" })
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Giriş Yap</button>
+                }
+            <a href="/Kullanici/Create" class="forgot-password btn">
+                Üye değil misin ?
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/login.js"></script>
+</body>
+</html>

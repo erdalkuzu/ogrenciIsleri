@@ -1,0 +1,56 @@
+﻿@model OgrenciIsleri.Models.Ogrenciler
+<div class="container">
+
+    <div style="font-size:17px; border:1px solid black; font-weight:bold" class="Bilgi">
+        <a class="nav navbar navbar-right btn" id="btnRef" style="font-size:25px">X</a>
+        <br />
+        <center>
+            <img src="@Model.Fotograf" width="150" />
+        </center>
+        <br />
+        <ul class="list-group">
+            <li class="list-group-item">
+                Ad ve Soyad : @Model.Adsoyad
+            </li>
+            <li class="list-group-item">
+                Vatandaş No : @Model.TCNo
+            </li>
+            <li class="list-group-item">
+                Telefon No : @Model.TelNo
+            </li>
+            <li class="list-group-item">
+                Uyruk : @Model.Uyruklar.Ad
+            </li>
+            <li class="list-group-item">
+                Bölüm : @Model.Bolumler.BolumAd
+            </li>
+            <li class="list-group-item">
+                Adres : @Html.Raw(Model.Adres)
+            </li>
+            <li class="list-group-item">
+                Cinsiyet : @Model.Cinsiyetler.Cinsiyet
+            </li>
+            <li class="list-group-item">
+                Doğum Yeri : @Model.Sehirler.SehirAd
+            </li>
+            <li class="list-group-item">
+                E-Mail Adresi : @Model.Mail
+            </li>
+            <li class="list-group-item">
+                Doğum Tarihi : @string.Format("{0: dd MMMMMMMM yy}", Model.DogumTarihi)
+            </li>
+            <li class="list-group-item">
+                Sınıfı : @Model.Sınıflar.SınıfNo Sınıfında
+            </li>
+        </ul>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnRef").click(function () {
+            $(".Bilgi").parent().parent().remove();
+        })
+    });
+</script>

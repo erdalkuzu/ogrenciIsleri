@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OIDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bolumler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BolumAd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cinsiyetler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cinsiyet" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Dersler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DersAdı" Type="nvarchar" MaxLength="50" />
+    <Property Name="OgretmenID" Type="int" />
+    <Property Name="BolumID" Type="int" />
+  </EntityType>
+  <EntityType Name="Kullanıcılar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullanıcıAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="OgretmenID" Type="int" />
+  </EntityType>
+  <EntityType Name="Notlar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OgretmenID" Type="int" />
+    <Property Name="BolumID" Type="int" />
+    <Property Name="OgrencıID" Type="int" />
+    <Property Name="DersID" Type="int" />
+    <Property Name="Notu" Type="int" />
+  </EntityType>
+  <EntityType Name="Ogrenciler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adsoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="TCNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="Fotograf" Type="nvarchar(max)" />
+    <Property Name="CinsiyetID" Type="int" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+    <Property Name="TelNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="DogumTarihi" Type="date" />
+    <Property Name="BolumID" Type="int" />
+    <Property Name="DogumYeri" Type="int" />
+    <Property Name="Sınıf" Type="int" />
+    <Property Name="UyrukID" Type="int" />
+  </EntityType>
+  <EntityType Name="Ogretmenler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BolumID" Type="int" />
+    <Property Name="Adsoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fotograf" Type="nvarchar(max)" />
+    <Property Name="DogumTarihi" Type="date" />
+    <Property Name="DogumYeri" Type="int" />
+    <Property Name="CinsiyetID" Type="int" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sehirler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SehirAd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sınıflar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SınıfNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Uyruklar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Dersler_Bolumler">
+    <End Role="Bolumler" Type="Self.Bolumler" Multiplicity="0..1" />
+    <End Role="Dersler" Type="Self.Dersler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Dersler">
+        <PropertyRef Name="BolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dersler_Ogretmenler">
+    <End Role="Ogretmenler" Type="Self.Ogretmenler" Multiplicity="0..1" />
+    <End Role="Dersler" Type="Self.Dersler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogretmenler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Dersler">
+        <PropertyRef Name="OgretmenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanıcılar_Ogretmenler">
+    <End Role="Ogretmenler" Type="Self.Ogretmenler" Multiplicity="0..1" />
+    <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogretmenler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Kullanıcılar">
+        <PropertyRef Name="OgretmenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Bolumler">
+    <End Role="Bolumler" Type="Self.Bolumler" Multiplicity="0..1" />
+    <End Role="Notlar" Type="Self.Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="BolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Dersler">
+    <End Role="Dersler" Type="Self.Dersler" Multiplicity="0..1" />
+    <End Role="Notlar" Type="Self.Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dersler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="DersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Ogrenciler">
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="0..1" />
+    <End Role="Notlar" Type="Self.Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenciler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="OgrencıID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Ogretmenler">
+    <End Role="Ogretmenler" Type="Self.Ogretmenler" Multiplicity="0..1" />
+    <End Role="Notlar" Type="Self.Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogretmenler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="OgretmenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Bolumler">
+    <End Role="Bolumler" Type="Self.Bolumler" Multiplicity="0..1" />
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="BolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Cinsiyetler">
+    <End Role="Cinsiyetler" Type="Self.Cinsiyetler" Multiplicity="0..1" />
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinsiyetler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="CinsiyetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Sehirler">
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="0..1" />
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="DogumYeri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Sınıflar">
+    <End Role="Sınıflar" Type="Self.Sınıflar" Multiplicity="0..1" />
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sınıflar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="Sınıf" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Uyruklar">
+    <End Role="Uyruklar" Type="Self.Uyruklar" Multiplicity="0..1" />
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uyruklar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="UyrukID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogretmenler_Bolumler">
+    <End Role="Bolumler" Type="Self.Bolumler" Multiplicity="0..1" />
+    <End Role="Ogretmenler" Type="Self.Ogretmenler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogretmenler">
+        <PropertyRef Name="BolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogretmenler_Cinsiyetler">
+    <End Role="Cinsiyetler" Type="Self.Cinsiyetler" Multiplicity="0..1" />
+    <End Role="Ogretmenler" Type="Self.Ogretmenler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinsiyetler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogretmenler">
+        <PropertyRef Name="CinsiyetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogretmenler_Sehirler">
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="0..1" />
+    <End Role="Ogretmenler" Type="Self.Ogretmenler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ogretmenler">
+        <PropertyRef Name="DogumYeri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OIDbModelStoreContainer">
+    <EntitySet Name="Bolumler" EntityType="Self.Bolumler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cinsiyetler" EntityType="Self.Cinsiyetler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dersler" EntityType="Self.Dersler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanıcılar" EntityType="Self.Kullanıcılar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notlar" EntityType="Self.Notlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ogrenciler" EntityType="Self.Ogrenciler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ogretmenler" EntityType="Self.Ogretmenler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sehirler" EntityType="Self.Sehirler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sınıflar" EntityType="Self.Sınıflar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uyruklar" EntityType="Self.Uyruklar" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Dersler_Bolumler" Association="Self.FK_Dersler_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumler" />
+      <End Role="Dersler" EntitySet="Dersler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dersler_Ogretmenler" Association="Self.FK_Dersler_Ogretmenler">
+      <End Role="Ogretmenler" EntitySet="Ogretmenler" />
+      <End Role="Dersler" EntitySet="Dersler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanıcılar_Ogretmenler" Association="Self.FK_Kullanıcılar_Ogretmenler">
+      <End Role="Ogretmenler" EntitySet="Ogretmenler" />
+      <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Bolumler" Association="Self.FK_Notlar_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumler" />
+      <End Role="Notlar" EntitySet="Notlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Dersler" Association="Self.FK_Notlar_Dersler">
+      <End Role="Dersler" EntitySet="Dersler" />
+      <End Role="Notlar" EntitySet="Notlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Ogrenciler" Association="Self.FK_Notlar_Ogrenciler">
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+      <End Role="Notlar" EntitySet="Notlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Ogretmenler" Association="Self.FK_Notlar_Ogretmenler">
+      <End Role="Ogretmenler" EntitySet="Ogretmenler" />
+      <End Role="Notlar" EntitySet="Notlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Bolumler" Association="Self.FK_Ogrenciler_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumler" />
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Cinsiyetler" Association="Self.FK_Ogrenciler_Cinsiyetler">
+      <End Role="Cinsiyetler" EntitySet="Cinsiyetler" />
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Sehirler" Association="Self.FK_Ogrenciler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirler" />
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Sınıflar" Association="Self.FK_Ogrenciler_Sınıflar">
+      <End Role="Sınıflar" EntitySet="Sınıflar" />
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Uyruklar" Association="Self.FK_Ogrenciler_Uyruklar">
+      <End Role="Uyruklar" EntitySet="Uyruklar" />
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogretmenler_Bolumler" Association="Self.FK_Ogretmenler_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumler" />
+      <End Role="Ogretmenler" EntitySet="Ogretmenler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogretmenler_Cinsiyetler" Association="Self.FK_Ogretmenler_Cinsiyetler">
+      <End Role="Cinsiyetler" EntitySet="Cinsiyetler" />
+      <End Role="Ogretmenler" EntitySet="Ogretmenler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogretmenler_Sehirler" Association="Self.FK_Ogretmenler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirler" />
+      <End Role="Ogretmenler" EntitySet="Ogretmenler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

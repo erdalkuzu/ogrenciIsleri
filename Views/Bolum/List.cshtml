@@ -1,0 +1,56 @@
+﻿@model List<OgrenciIsleri.Models.Bolumler>
+@{
+    ViewBag.Title = "List";
+}
+<div class="col-lg-12">
+    <h2>Bölüm Listesi</h2>
+
+    <div class="container">
+        <div class="nav navbar navbar-right">
+            <ul style="list-style:none">
+                <li>@Html.ActionLink("Yeni Bölüm", "Create", "Bolum", new { @class = "btn btn-primary" })</li>
+            </ul>
+        </div>
+        <table class="table table-bordered table-hover" id="tblBolum">
+            <thead>
+                <tr>
+                    <th>Bölüm Adı</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.BolumAd // <b>Öğrenci sayısı : @item.Ogrencilers.Count</b></td>
+                        <td>@Html.ActionLink("Güncelle", "Update", "Bolum", new { id = item.ID }, new { @class = "btn" })</td>
+                        <td><a class="btn btnBolum" data-id="@item.ID" data-name="@item.BolumAd">Sil</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tblBolum").on("click", ".btnBolum", function () {
+            var btn = $(this);
+            var id = btn.data("id");
+            var name = btn.data("name");
+            $.ajax({
+                url: "/Bolum/Delete/" + id,
+                method:"POST",
+                success: function () {
+                    btn.parent().parent().remove();
+                    alert(name + "\n Başarıyla silindi.")
+                },
+                error: function () {
+                    alert(name + "Silme başarısız.")
+                }
+            });
+        });
+    });
+</script>
+

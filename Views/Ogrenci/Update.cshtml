@@ -1,0 +1,63 @@
+﻿@model OgrenciIsleri.ViewModel.OgrenciVM
+@{
+    ViewBag.Title = "Update";
+}
+<div class="col-lg-12">
+    <div class="container">
+        <h2>Öğrenci Güncelle</h2>
+        @using (Html.BeginForm("Update", "Ogrenci", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary()
+
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Ogrenciler.Adsoyad, new { @class = "form-control", placeholder = "Ad ve Soyad" })
+                @Html.ValidationMessageFor(x => x.Ogrenciler.Adsoyad)
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Ogrenciler.Mail, new { @class = "form-control", placeholder = "E-Posta Adresi" })
+                @Html.ValidationMessageFor(x => x.Ogrenciler.Mail)
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(x => x.Ogrenciler.UyrukID, new SelectList(Model.Uyruklars, "ID", "Ad"), new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Ogrenciler.TCNo, new { @class = "form-control", placeholder = "Vatandaşlık Numarası" })
+                @Html.ValidationMessageFor(x => x.Ogrenciler.TCNo)
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(x => x.Ogrenciler.CinsiyetID, new SelectList(Model.Cinsiyetlers, "ID", "Cinsiyet"), new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Ogrenciler.TelNo, new { @class = "form-control", placeholder = "Telefon Numarası" })
+                @Html.ValidationMessageFor(x => x.Ogrenciler.TelNo)
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(x => x.Ogrenciler.DogumYeri, new SelectList(Model.Sehirlers, "ID", "SehirAd"), new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Ogrenciler.DogumTarihi, "{0:dd MMMMMMMM yyyy}", new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(x => x.Ogrenciler.DogumTarihi)
+            </div>
+
+            <div class="form-group">
+                @Html.DropDownListFor(x => x.Ogrenciler.BolumID, new SelectList(Model.Bolumler, "ID", "BolumAd"), new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(x => x.Ogrenciler.Sınıf, new SelectList(Model.Sınıflars, "ID", "SınıfNo"), new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.TextAreaFor(x => x.Ogrenciler.Adres, 5, 3, new { @class = "form-control", placeholder = "Adres" })
+                @Html.ValidationMessageFor(x => x.Ogrenciler.Adres)
+            </div>
+            <div class="form-group">
+                @Html.TextBox("Foto", null, new { @class = "form-control", type = "file", accept = ".jpg,.png,.jpeg,.JPEG" })
+            </div>
+            @Html.HiddenFor(x => x.Ogrenciler.ID)
+            <button type="submit" class="btn btn-success">Kaydet</button>
+        }
+
+    </div>
+</div>
+
+
